@@ -1,0 +1,74 @@
+<h1>{{section.settings.page_heading}}</h1>
+
+<div class="faq">
+
+{%for block in section.blocks%}
+    {%if block.type=="QA"%}
+        <div class="question">
+            <input type="checkbox" id="question-{{forloop.index}}" class="question-toggle">
+            <label for="question-{{forloop.index}}" class="question-label">{{block.settings.title}}</label> {%comment%}"title" links text input to the displayed title on block{%endcomment%}
+            <div class="answer">
+			    {{block.settings.answer}}
+            </div>
+        </div>
+        
+
+    {%elsif block.type=="Headline"%}
+
+        <h3>{{block.settings.title}}</h3>
+
+    {%endif%}
+{%endfor%}
+
+</div>
+
+ {%comment%}first "title" block sets title of blocks without affecting display of rendered question title
+                 {
+                    "type":"text",
+                    "label":"title (internal only)",
+                    "id":"title"
+                },{%endcomment%}
+
+{%schema%}
+{   "name": "Customer Questions",
+    "settings":[
+        {
+            "type": "text",
+            "label": "Heading for FAQ page",
+            "id":"page_heading"
+        }
+    ],
+    "blocks":[
+        {
+            "type":"QA",
+            "name":"Question/Answer",
+            "settings":[
+               
+                {
+                    "type":"text",
+                    "label":"customer questions",
+                    "id":"title"
+                },
+                {
+                    "type":"richtext",
+                    "label":"answer for faq",
+                    "id":"answer"
+                }
+            ]
+
+        },
+        {
+            "type":"Headline",
+            "name":"Headline",
+            "settings":[
+                {
+                    "type":"text",
+                    "label":"headline",
+                    "id":"title"
+                }
+            ]
+        }
+        
+    ]
+}
+{%endschema%}

@@ -18,6 +18,9 @@
         <div>
           <h3 class="cart-popup-item__title" data-cart-popup-title></h3>
           <ul class="product-details" aria-label="{{ 'cart.popup.product_details' | t }}" data-cart-popup-product-details></ul>
+          <br>
+          <p>Price: {{product.price | money_with_currency}}</p>
+          {%comment%}{{products.product.price | money_with_currency}}{%endcomment%}
         </div>
         <div class="cart-popup-item__quantity">
           <span class="visually-hidden" data-cart-popup-quantity-label></span>
@@ -27,8 +30,10 @@
       </div>
     </div>
 
+    
+
     <a href="{{ routes.cart_url }}" class="cart-popup__cta-link btn btn--secondary-accent">
-      {{ 'products.product.view_cart' | t }} (<span data-cart-popup-cart-quantity></span>)
+      {{ 'products.product.view_cart' | t }}  (<span data-cart-popup-cart-quantity></span>)
     </a>
 
     <div class="cart-popup__dismiss">

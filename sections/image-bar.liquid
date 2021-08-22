@@ -1,4 +1,13 @@
-<h3 style="text-align: center">Instagram</h3>
+<!--<div style="display:flex;justify-content:space-between">
+  <img src="assets\paper-style.jpg" width="350" height="315">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/uT_GcOGEFsk" title="YouTube video player" frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  <img src="assets\paper-style.jpg" width="350" height="315">
+</div>-->
+<h3 class="text-center">{{section.settings.header}}</h3>
+<p class="text-center">{{section.settings.subheading}}</p>
+
+
 <div class="grid grid--no-gutters image-bar image-bar--{{ section.settings.section_height }}">
   {% case section.blocks.size %}
     {% when 1 %}
@@ -90,6 +99,16 @@
   "class": "index-section index-section--flush",
   "max_blocks": 4,
   "settings": [
+    {
+        "type": "text",
+        "label": "header for image-bar",
+        "id": "header"
+      },
+       {
+        "type": "text",
+        "label": "subheading for image bar",
+        "id": "subheading"
+      },
     {
       "type": "select",
       "id": "section_height",
@@ -554,5 +573,7 @@
       ]
     }
   ]
+
+      
 }
 {% endschema %}
