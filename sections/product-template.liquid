@@ -148,8 +148,9 @@
         <script>window.performance.mark('debut:product:title_visible');</script>
 
         {%unless isAffiliateProduct%}
+        {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', jm_style: '', concierge_install: false %}
 
-        <div>⭐⭐⭐⭐⭐</div>
+        {%comment%}<div>⭐⭐⭐⭐⭐</div>{%endcomment%}
         
           <div class="product__price">
             {% include 'product-price', variant: current_variant, show_vendor: section.settings.show_vendor %}
@@ -293,15 +294,51 @@
         >
         </div>
 
-        <div class="product-single__description rte">
-          {{ product.description }}
+{%comment%}Tab Selector{%endcomment%}
+        <div class="rte">
+          <div class="container">
+            <div class="selector">
+                <div class="tab tab-active">
+                    {{'customizations.product-template.description_tab' | t}}
+                </div>
+
+                {%unless product.metafields.description.details==blank%}
+                <div class="tab">
+                   {{'customizations.product-template.details_tab' | t}}
+                </div>
+                {%endunless%}
+
+                <div class="tab">
+                    {{'customizations.product-template.shipping_tab' | t}}
+                </div>
+            </div>
+            <div class="content">
+                <div id="Description" class="content-body show-active">
+                    {{product.description}}
+                </div>
+
+                {%unless product.metafields.description.details==blank%}
+                  {{product.metafields.description.details}}
+                {%endunless%}
+
+                <div id="Shipping" class="content-body">
+                    <p>{{'customizations.product-template.shipping_text' | t}}</p>
+                </div>
+            </div>
         </div>
+      </div>
+
+
+        {%comment%}<div class="product-single__description rte">
+          {{ product.description }}
+        </div>{%endcomment%}
 
         {% if section.settings.show_share_buttons %}
           {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product.featured_media %}
         {% endif %}
     </div>
   </div>
+  {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: false %}
 </div>
 
 {% unless product == empty %}
